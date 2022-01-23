@@ -1,16 +1,25 @@
 //
 
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState} from "react";
 
 function App() {
-  const [number, setNumber] = useState(42)
+
+  const [colored, setColored] = useState(false)
+
+  const [count, setCount] = useState(1)
+
+  const styles = {
+    color: colored ? 'blue' : 'black'
+  }
+
   return (
     <>
-    <div>
-      <h1>Computing property: {number} </h1>
-      <button className="btn btn-success" onClick={() => setNumber(prev => prev + 1)} >Add</button>
-      <button className="btn btn-danger" onClick={() => setNumber(prev => prev - 1)} >Remove</button>
-    </div>
+      <h1 style={styles} >Quantity:</h1>
+
+      <button className="btn btn-success" onClick={() => setCount(prev => prev + 1)} >Add</button>
+
+      <button className="btn btn-success" onClick={() => setCount(prev => prev - 1)} >Remove</button>
+
     </>
   )
 }
