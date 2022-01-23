@@ -1,4 +1,4 @@
-**#Almost all changes are in 'App.js' file and in '.src/example' folder**
+**#Almost all changes are in '.src/App.js' file and in '.src/example' folder**
 
 # Getting Started with Create React App
 
