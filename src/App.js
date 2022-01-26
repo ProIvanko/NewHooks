@@ -1,19 +1,48 @@
-//useContext "связывает" между собой различные строки кода в разных файлах ??? `требуется уточнение`
+//self made hooks 
 
-import React from "react";
-import Main from "./main";
-import Alert from "./alert/Alert";
-import { AlertProvider } from "./alert/AlertContext"; 
+import React, { useEffect, useState } from "react";
+
+function useLogger(value) {
+  useEffect(() => {
+    console.log('ValueChanged', value)
+  }, [value])
+}
+
+
+
+function useInput(initialValue) {
+  const [value, setValue] = useState(initialValue)
+
+  const onChange = event => {
+    setValue(event.target.value)
+  }
+
+  const clear = () => setValue('')
+
+
+  return {
+    bind: {value, onChange},
+    value,
+    clear
+  }
+}
 
 function App() {
 
+  const input = useInput('')
+
+  useLogger(input.value)
+
   return (
-    <AlertProvider>
-      <div className="container pt-3">
-        <Alert  ></Alert>
-        <Main toggle={() => {}} ></Main>
-      </div>  
-    </AlertProvider>
+    <div className="container pt-3">
+      <input type='text' {...input.bind} />
+
+      <button className="btn btn-warning" onClick={() => input.clear()}>Clear</button>
+
+      <hr/>
+      <h1> {input.value} </h1>
+
+    </div>  
   )
 }
 
